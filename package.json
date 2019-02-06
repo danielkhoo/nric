@@ -1,6 +1,6 @@
 {
   "name": "nric",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Validate or generate Singapore NRIC numbers",
   "license": "MIT",
   "repository": "nric",
