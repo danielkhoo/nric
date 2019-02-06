@@ -1,0 +1,14 @@
+{
+  "name": "nric",
+  "version": "0.1.0",
+  "description": "Validate or generate Singapore NRIC numbers",
+  "license": "MIT",
+  "repository": "nric",
+  "main": "index.js",
+  "keywords": [
+    "NRIC",
+    "npm",
+    "package",
+    "singapore"
+  ]
+}
