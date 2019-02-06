@@ -11,18 +11,18 @@ Utility to validate or generate Singapore NRIC numbers
 
 ## Usage
 
-```
-const nric = require('nric');
+```js
+const nric = require('nric')
 
-nric.validate('S1234567A');    //false
+nric.validate('S1234567A') //false
 
-nric.validate('S9470855I');    //true
+nric.validate('S9470855I') //true
 
-nric.validate('T7123769E');    //true
+nric.validate('T7123769E') //true
 
-nric.generateNRIC();    //e.g. S9470855I
+nric.generateNRIC() //e.g. S9470855I
 
-nric.generateFIN();     //e.g. G2943157X
+nric.generateFIN() //e.g. G2943157X
 ```
 
 ## License
