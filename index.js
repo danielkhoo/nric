@@ -1,4 +1,4 @@
-module.exports = validate = input => {
+const validate = input => {
   const nric = input.toUpperCase()
   console.log(nric)
   if (nric.length !== 9) {
@@ -17,7 +17,7 @@ module.exports = validate = input => {
   return checkdigit == getCheckDigit(pre, digits)
 }
 
-module.exports = generateNRIC = () => {
+const generateNRIC = () => {
   const letters = ['S', 'T']
   const pre = letters[getRandomInt(0, 2)]
   const digitString = getRandomInt(1000000, 9999999).toString()
@@ -25,7 +25,7 @@ module.exports = generateNRIC = () => {
   const checkdigit = getCheckDigit(pre, digits)
   return `${pre}${digitString}${checkdigit}`
 }
-module.exports = generateFIN = () => {
+const generateFIN = () => {
   const letters = ['F', 'G']
   const pre = letters[getRandomInt(0, 2)]
   const digitString = getRandomInt(1000000, 9999999).toString()
@@ -58,7 +58,9 @@ const getRandomInt = (min, max) => {
   max = Math.floor(max)
   return Math.floor(Math.random() * (max - min)) + min //The maximum is exclusive and the minimum is inclusive
 }
-console.log(validate(generateNRIC()))
-console.log(validate(generateNRIC()))
-console.log(validate(generateNRIC()))
-console.log(validate(generateNRIC()))
+
+module.exports = {
+  validate,
+  generateNRIC,
+  generateFIN
+}
