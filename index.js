@@ -1,6 +1,5 @@
 const validate = input => {
   const nric = input.toUpperCase()
-  console.log(nric)
   if (nric.length !== 9) {
     return false
   }
@@ -53,10 +52,12 @@ const getCheckDigit = (pre, digits) => {
     return false
   }
 }
+
+//The maximum is exclusive and the minimum is inclusive
 const getRandomInt = (min, max) => {
   min = Math.ceil(min)
   max = Math.floor(max)
-  return Math.floor(Math.random() * (max - min)) + min //The maximum is exclusive and the minimum is inclusive
+  return Math.floor(Math.random() * (max - min)) + min
 }
 
 module.exports = {
