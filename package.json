@@ -5,6 +5,7 @@
   "license": "MIT",
   "repository": "nric",
   "main": "index.js",
+  "typings": "index.d.ts",
   "keywords": [
     "NRIC",
     "npm",
