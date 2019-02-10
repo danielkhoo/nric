@@ -3,13 +3,12 @@
   "version": "1.1.1",
   "description": "Validate or generate Singapore NRIC numbers",
   "license": "MIT",
-  "repository": "nric",
+  "homepage": "https://github.com/danielkhoo/nric",
+  "repository": "github:danielkhoo/nric",
   "main": "index.js",
   "typings": "index.d.ts",
   "keywords": [
     "NRIC",
-    "npm",
-    "package",
     "singapore"
   ]
 }
