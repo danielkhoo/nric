@@ -25,7 +25,6 @@ const generateNRIC = () => {
   const checkdigit = getCheckDigit(pre, digits);
 
   let nric = `${pre}${digitString}${checkdigit}`;
-
   while (listOfNRICs.indexOf(nric) !== -1) {
     nric = this.generateNRIC();
   }
@@ -33,13 +32,22 @@ const generateNRIC = () => {
 
   return nric;
 };
+
+const listOfFINs = [];
 const generateFIN = () => {
   const letters = ['F', 'G'];
   const pre = letters[getRandomInt(0, 2)];
   const digitString = getRandomInt(1000000, 9999999).toString();
   const digits = digitString.split('').map(num => parseInt(num));
   const checkdigit = getCheckDigit(pre, digits);
-  return `${pre}${digitString}${checkdigit}`;
+
+  let fin = `${pre}${digitString}${checkdigit}`;
+  while (listOfFINs.indexOf(fin) !== -1) {
+    fin = this.generateFIN();
+  }
+  listOfFINs.push(fin);
+
+  return fin;
 };
 
 const getCheckDigit = (pre, digits) => {
