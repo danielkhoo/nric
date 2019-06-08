@@ -3,7 +3,7 @@
 [![](https://img.shields.io/npm/v/nric.svg?style=flat)](https://github.com/danielkhoo/nric)
 [![](https://img.shields.io/bundlephobia/min/nric.svg?style=flat)](https://github.com/danielkhoo/nric)
 
-Utility to validate or generate Singapore NRIC numbers
+Utility to validate or generate Singapore NRIC and FIN numbers with valid check digit.
 
 ## Install
 
@@ -12,17 +12,17 @@ Utility to validate or generate Singapore NRIC numbers
 ## Usage
 
 ```js
-const nric = require('nric')
+const nric = require('nric');
 
-nric.validate('S1234567A') //false
+nric.validate('S1234567A'); //false
 
-nric.validate('S9470855I') //true
+nric.validate('S9470855I'); //true
 
-nric.validate('T7123769E') //true
+nric.validate('T7123769E'); //true
 
-nric.generateNRIC() //e.g. S9470855I
+nric.generateNRIC(); //e.g. S9470855I
 
-nric.generateFIN() //e.g. G2943157X
+nric.generateFIN(); //e.g. G2943157X
 ```
 
 ## License
