@@ -1,65 +1,100 @@
-const validate = input => {
-  const nric = input.toUpperCase();
-  if (nric.length !== 9) {
+function validate(input) {
+  try {
+    var nric = input.toUpperCase();
+
+    if (nric.length !== 9) {
+      return false;
+    }
+
+    var pre = nric.slice(0, 1);
+    var digits = nric
+      .slice(1, 8)
+      .split('')
+      .map(function(num) {
+        return parseInt(num);
+      });
+
+    if (
+      !digits.every(function(x) {
+        return !isNaN(x);
+      })
+    ) {
+      return false;
+    }
+
+    var checkdigit = nric.slice(8, 9).toUpperCase();
+    return checkdigit == getCheckDigit(pre, digits);
+  } catch (e) {
     return false;
   }
-  const pre = nric.slice(0, 1);
-  const digits = nric
-    .slice(1, 8)
-    .split('')
-    .map(num => parseInt(num));
-  if (!digits.every(x => !isNaN(x))) {
-    return false;
+}
+
+var listOfNRICs = [];
+
+function generateNRIC() {
+  function generateRandomNRIC() {
+    var letters = ['S', 'T'];
+    var pre = letters[getRandomInt(0, 2)];
+    var digitString = getRandomInt(1000000, 9999999).toString();
+    var digits = digitString.split('').map(function(num) {
+      return parseInt(num);
+    });
+    var checkdigit = getCheckDigit(pre, digits);
+    return ''
+      .concat(pre)
+      .concat(digitString)
+      .concat(checkdigit);
   }
 
-  const checkdigit = nric.slice(8, 9).toUpperCase();
-  return checkdigit == getCheckDigit(pre, digits);
-};
+  var nric = generateRandomNRIC();
 
-const listOfNRICs = [];
-const generateNRIC = () => {
-  const letters = ['S', 'T'];
-  const pre = letters[getRandomInt(0, 2)];
-  const digitString = getRandomInt(1000000, 9999999).toString();
-  const digits = digitString.split('').map(num => parseInt(num));
-  const checkdigit = getCheckDigit(pre, digits);
-
-  let nric = `${pre}${digitString}${checkdigit}`;
   while (listOfNRICs.indexOf(nric) !== -1) {
-    nric = this.generateNRIC();
+    nric = generateRandomNRIC();
   }
+
   listOfNRICs.push(nric);
-
   return nric;
-};
+}
 
-const listOfFINs = [];
-const generateFIN = () => {
-  const letters = ['F', 'G'];
-  const pre = letters[getRandomInt(0, 2)];
-  const digitString = getRandomInt(1000000, 9999999).toString();
-  const digits = digitString.split('').map(num => parseInt(num));
-  const checkdigit = getCheckDigit(pre, digits);
+var listOfFINs = [];
 
-  let fin = `${pre}${digitString}${checkdigit}`;
-  while (listOfFINs.indexOf(fin) !== -1) {
-    fin = this.generateFIN();
+function generateFIN() {
+  function generateRandomFIN() {
+    var letters = ['F', 'G'];
+    var pre = letters[getRandomInt(0, 2)];
+    var digitString = getRandomInt(1000000, 9999999).toString();
+    var digits = digitString.split('').map(function(num) {
+      return parseInt(num);
+    });
+    var checkdigit = getCheckDigit(pre, digits);
+    return ''
+      .concat(pre)
+      .concat(digitString)
+      .concat(checkdigit);
   }
+
+  var fin = generateRandomFIN();
+
+  while (listOfFINs.indexOf(fin) !== -1) {
+    fin = generateRandomFIN();
+  }
+
   listOfFINs.push(fin);
-
   return fin;
-};
+}
 
-const getCheckDigit = (pre, digits) => {
-  const weights = [2, 7, 6, 5, 4, 3, 2];
-  const checkST = ['J', 'Z', 'I', 'H', 'G', 'F', 'E', 'D', 'C', 'B', 'A'];
-  const checkFG = ['X', 'W', 'U', 'T', 'R', 'Q', 'P', 'N', 'M', 'L', 'K'];
-  let sum = 0;
-  for (let i = 0; i < digits.length; i++) {
+function getCheckDigit(pre, digits) {
+  var weights = [2, 7, 6, 5, 4, 3, 2];
+  var checkST = ['J', 'Z', 'I', 'H', 'G', 'F', 'E', 'D', 'C', 'B', 'A'];
+  var checkFG = ['X', 'W', 'U', 'T', 'R', 'Q', 'P', 'N', 'M', 'L', 'K'];
+  var sum = 0;
+
+  for (var i = 0; i < digits.length; i++) {
     sum += digits[i] * weights[i];
   }
-  const offset = pre == 'T' || pre == 'G' ? 4 : 0;
-  const dValue = (sum + offset) % 11;
+
+  var offset = pre == 'T' || pre == 'G' ? 4 : 0;
+  var dValue = (sum + offset) % 11;
 
   if (pre == 'S' || pre == 'T') {
     return checkST[dValue];
@@ -68,17 +103,17 @@ const getCheckDigit = (pre, digits) => {
   } else {
     return false;
   }
-};
+}
 
 //The maximum is exclusive and the minimum is inclusive
-const getRandomInt = (min, max) => {
+function getRandomInt(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min)) + min;
-};
+}
 
 module.exports = {
-  validate,
-  generateNRIC,
-  generateFIN
+  validate: validate,
+  generateNRIC: generateNRIC,
+  generateFIN: generateFIN
 };
