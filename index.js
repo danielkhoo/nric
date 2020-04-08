@@ -6,7 +6,7 @@ function validate(input) {
       return false;
     }
 
-    var pre = nric[0];
+    var pre = nric.charAt(0);
     var digits = nric
       .slice(1, 8)
       .split('')
@@ -18,7 +18,7 @@ function validate(input) {
       return false;
     }
 
-    var checkdigit = nric[8].toUpperCase();
+    var checkdigit = nric.charAt(8).toUpperCase();
     return checkdigit == getCheckDigit(pre, digits);
   } catch (e) {
     return false;
