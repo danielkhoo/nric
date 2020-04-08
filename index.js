@@ -6,7 +6,7 @@ function validate(input) {
       return false;
     }
 
-    var pre = nric.slice(0, 1);
+    var pre = nric[0];
     var digits = nric
       .slice(1, 8)
       .split('')
@@ -14,15 +14,11 @@ function validate(input) {
         return parseInt(num);
       });
 
-    if (
-      !digits.every(function(x) {
-        return !isNaN(x);
-      })
-    ) {
+    if (digits.some(isNaN)) {
       return false;
     }
 
-    var checkdigit = nric.slice(8, 9).toUpperCase();
+    var checkdigit = nric[8].toUpperCase();
     return checkdigit == getCheckDigit(pre, digits);
   } catch (e) {
     return false;
