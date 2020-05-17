@@ -1,10 +1,10 @@
 function validate(input) {
   try {
-    var nric = input.toUpperCase();
-
-    if (nric.length !== 9) {
+    if (typeof input !== 'string' || input.length !== 9) {
       return false;
     }
+
+    var nric = input.toUpperCase();
 
     var pre = nric.slice(0, 1);
     var digits = nric
@@ -15,8 +15,8 @@ function validate(input) {
       });
 
     if (
-      !digits.every(function(x) {
-        return !isNaN(x);
+      digits.some(function(x) {
+        return isNaN(x);
       })
     ) {
       return false;
