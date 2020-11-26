@@ -10,12 +10,12 @@ function validate(input) {
     var digits = nric
       .slice(1, 8)
       .split('')
-      .map(function(num) {
+      .map(function (num) {
         return parseInt(num);
       });
 
     if (
-      digits.some(function(x) {
+      digits.some(function (x) {
         return isNaN(x);
       })
     ) {
@@ -29,58 +29,26 @@ function validate(input) {
   }
 }
 
-var listOfNRICs = [];
-
 function generateNRIC() {
-  function generateRandomNRIC() {
-    var letters = ['S', 'T'];
-    var pre = letters[getRandomInt(0, 2)];
-    var digitString = getRandomInt(1000000, 9999999).toString();
-    var digits = digitString.split('').map(function(num) {
-      return parseInt(num);
-    });
-    var checkdigit = getCheckDigit(pre, digits);
-    return ''
-      .concat(pre)
-      .concat(digitString)
-      .concat(checkdigit);
-  }
-
-  var nric = generateRandomNRIC();
-
-  while (listOfNRICs.indexOf(nric) !== -1) {
-    nric = generateRandomNRIC();
-  }
-
-  listOfNRICs.push(nric);
-  return nric;
+  var letters = ['S', 'T'];
+  var pre = letters[getRandomInt(0, 2)];
+  var digitString = getRandomInt(1000000, 9999999).toString();
+  var digits = digitString.split('').map(function (num) {
+    return parseInt(num);
+  });
+  var checkdigit = getCheckDigit(pre, digits);
+  return ''.concat(pre).concat(digitString).concat(checkdigit);
 }
 
-var listOfFINs = [];
-
 function generateFIN() {
-  function generateRandomFIN() {
-    var letters = ['F', 'G'];
-    var pre = letters[getRandomInt(0, 2)];
-    var digitString = getRandomInt(1000000, 9999999).toString();
-    var digits = digitString.split('').map(function(num) {
-      return parseInt(num);
-    });
-    var checkdigit = getCheckDigit(pre, digits);
-    return ''
-      .concat(pre)
-      .concat(digitString)
-      .concat(checkdigit);
-  }
-
-  var fin = generateRandomFIN();
-
-  while (listOfFINs.indexOf(fin) !== -1) {
-    fin = generateRandomFIN();
-  }
-
-  listOfFINs.push(fin);
-  return fin;
+  var letters = ['F', 'G'];
+  var pre = letters[getRandomInt(0, 2)];
+  var digitString = getRandomInt(1000000, 9999999).toString();
+  var digits = digitString.split('').map(function (num) {
+    return parseInt(num);
+  });
+  var checkdigit = getCheckDigit(pre, digits);
+  return ''.concat(pre).concat(digitString).concat(checkdigit);
 }
 
 function getCheckDigit(pre, digits) {
@@ -115,5 +83,5 @@ function getRandomInt(min, max) {
 module.exports = {
   validate: validate,
   generateNRIC: generateNRIC,
-  generateFIN: generateFIN
+  generateFIN: generateFIN,
 };
