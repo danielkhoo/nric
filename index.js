@@ -23,7 +23,7 @@ function validate(input) {
     }
 
     var checkdigit = nric.slice(8, 9).toUpperCase();
-    return checkdigit == getCheckDigit(pre, digits);
+    return checkdigit === getCheckDigit(pre, digits);
   } catch (e) {
     return false;
   }
