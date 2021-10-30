@@ -1,6 +1,6 @@
 {
   "name": "nric",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Validate or generate Singapore NRIC numbers",
   "license": "MIT",
   "homepage": "https://github.com/danielkhoo/nric",
