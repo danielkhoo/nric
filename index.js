@@ -55,19 +55,24 @@ function getCheckDigit(pre, digits) {
   var weights = [2, 7, 6, 5, 4, 3, 2];
   var checkST = ['J', 'Z', 'I', 'H', 'G', 'F', 'E', 'D', 'C', 'B', 'A'];
   var checkFG = ['X', 'W', 'U', 'T', 'R', 'Q', 'P', 'N', 'M', 'L', 'K'];
+  var checkM = ['X', 'W', 'U', 'T', 'R', 'Q', 'P', 'N', 'J', 'L', 'K']
   var sum = 0;
 
   for (var i = 0; i < digits.length; i++) {
     sum += digits[i] * weights[i];
   }
 
-  var offset = pre == 'T' || pre == 'G' ? 4 : 0;
+  var offset = 0;
+  if (pre == 'T' || pre == 'G') offset = 4;
+  if (pre == 'M') offset = 3;
   var dValue = (sum + offset) % 11;
 
   if (pre == 'S' || pre == 'T') {
     return checkST[dValue];
   } else if (pre == 'F' || pre == 'G') {
     return checkFG[dValue];
+  } else if (pre == 'M') {
+    return checkM[dValue];
   } else {
     return false;
   }
